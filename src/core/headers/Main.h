@@ -2,26 +2,19 @@
 #define CORE_HEADERS_MAIN_H_
 
 #include <string>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
+
+#include "../../socket/headers/ServerSocket.h"
+#include "../../thread/headers/TestThread.h"
 
 #include <iostream>
+#include <string.h>
+
+#define __FILENAME__ strrchr("/" __FILE__, '/') + 1
+#define LOCATION string(__FILENAME__) + ":" + string(__func__) + "():" + to_string(__LINE__)
 
 using namespace std;
 
 class Main {
-
-	unsigned short int port = 80;
-	int actualSocket, timeoutSeconds = 0, timeoutMilliseconds = 0,
-			addressLength = 0, yes = 1, no = 0;
-	struct timeval timeout;
-	struct sockaddr_in address;
-
-	void makeSocket();
-	int listenForConnection();
-	void readData(int socket, int clientSocket);
 
 public:
 

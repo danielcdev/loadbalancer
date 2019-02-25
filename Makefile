@@ -5,14 +5,14 @@ HEADERDIRS =	$(addprefix -I, $(sort $(dir $(wildcard $(OBJSDIR)/**/$(HEADERSDIR)
 
 CXX =			g++
 CXXFLAGS = 		$(HEADERDIRS) -std=c++0x -Wall
-LDFLAGS =		-static
+LDFLAGS =		-pthread
 
 LIBS =			
 TARGET =		loadbalancer
 
 $(TARGET):		$(OBJS)
 				$(CXX) $(LDFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
-	
+
 all:
 				$(TARGET)
 
