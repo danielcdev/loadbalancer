@@ -22,8 +22,18 @@ void Main::begin() {
 		if (newSocket == 0)
 			continue;
 
-		TestThread *thisThread = new TestThread();
-		thisThread->alive(newSocket);
+		Socket *clientSocket = new ClientSocket(newSocket);
+		Socket *outgoingSocket = new OutgoingSocket();
+
+		try {
+			outgoingSocket->create();
+		} catch (exception &e) {
+			cerr << "Caught exception at " << LOCATION << "\n" << e.what()
+					<< endl;
+		}
+
+		SocketConnector *socketConnector = new SocketConnector();
+		socketConnector->connect(clientSocket, outgoingSocket);
 	}
 }
 

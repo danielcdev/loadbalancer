@@ -11,18 +11,18 @@ void ServerSocket::create() {
 
 	//TODO Add errno back into exception
 
-	if ((socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0)) == 0)
+	if ((fileDescriptor = socket(AF_INET, SOCK_STREAM, 0)) == 0)
 		throw LoadBalancerException("Failed to create socket");
 
-	if (setsockopt(socketFileDescriptor, SOL_SOCKET, SO_REUSEADDR,
+	if (setsockopt(fileDescriptor, SOL_SOCKET, SO_REUSEADDR,
 			(char *) &yes, sizeof(yes)) < 0)
 		throw LoadBalancerException("Failed to set socket options");
 
-	if (bind(socketFileDescriptor, (struct sockaddr *) &address,
+	if (bind(fileDescriptor, (struct sockaddr *) &address,
 			sizeof(address)) < 0)
 		throw LoadBalancerException("Failed to bind socket");
 
-	if (listen(socketFileDescriptor, SOMAXCONN) < 0)
+	if (listen(fileDescriptor, SOMAXCONN) < 0)
 		throw LoadBalancerException("Failed to listen");
 }
 
@@ -31,15 +31,15 @@ int ServerSocket::listenForConnection() {
 	fd_set readFileDescriptors;
 
 	FD_ZERO(&readFileDescriptors);
-	FD_SET(socketFileDescriptor, &readFileDescriptors);
+	FD_SET(fileDescriptor, &readFileDescriptors);
 
 	activity = select(100, &readFileDescriptors, 0, 0, 0);
 
 	if (activity < 0
-			|| (newSocketFileDescriptor = accept(socketFileDescriptor,
+			|| (newSocketFileDescriptor = accept(fileDescriptor,
 					(struct sockaddr *) &address, (socklen_t*) &addressLength))
 					< 0
-			|| setsockopt(socketFileDescriptor, SOL_SOCKET, SO_RCVTIMEO,
+			|| setsockopt(fileDescriptor, SOL_SOCKET, SO_RCVTIMEO,
 					(char *) &timeout, sizeof(struct timeval)) < 0
 			|| newSocketFileDescriptor < 1)
 		return 0;

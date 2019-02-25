@@ -3,8 +3,11 @@
 
 #include <string>
 
+#include "SocketConnector.h"
+#include "../../socket/headers/Socket.h"
+#include "../../socket/headers/ClientSocket.h"
 #include "../../socket/headers/ServerSocket.h"
-#include "../../thread/headers/TestThread.h"
+#include "../../socket/headers/OutgoingSocket.h"
 
 #include <iostream>
 #include <string.h>

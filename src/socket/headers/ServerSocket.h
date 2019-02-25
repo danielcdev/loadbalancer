@@ -14,7 +14,7 @@ using namespace std;
 class ServerSocket {
 
 	unsigned short int listenPort = 80;
-	int socketFileDescriptor, timeoutSeconds = 0, timeoutMilliseconds = 0,
+	int fileDescriptor, timeoutSeconds = 0, timeoutMilliseconds = 0,
 			addressLength = 0, yes = 1, no = 0;
 	struct timeval timeout;
 	struct sockaddr_in address;
