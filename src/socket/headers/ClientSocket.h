@@ -13,7 +13,7 @@ class ClientSocket: public Socket {
 public:
 
 	void create();
-	int read(char *data);
+	int read(char *&data);
 	void write(char data[], int length);
 	void close();
 	ClientSocket(int fileDescriptor);

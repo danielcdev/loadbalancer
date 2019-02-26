@@ -11,6 +11,7 @@ void DataTransportThread::entryPoint(Socket *readSocket, Socket *writeSocket) {
 		cout << "Writing " << data << endl;
 
 		writeSocket->write(data, bytesRead);
+		delete[] data;
 	}
 
 	readSocket->close();
