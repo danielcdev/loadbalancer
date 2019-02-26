@@ -10,12 +10,16 @@
 
 class Socket {
 
+protected:
+
+	int fileDescriptor;
+
 public:
 
-	virtual void create()=0;
-	virtual int read(char *&data)=0;
-	virtual void write(char data[], int length)=0;
-	virtual void close()=0;
+	virtual void create();
+	virtual int read(char *&data);
+	virtual void write(char data[], int length);
+	virtual void close();
 	Socket();
 	virtual ~Socket();
 };

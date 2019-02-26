@@ -9,14 +9,9 @@ using namespace std;
 
 class OutgoingSocket: public Socket {
 
-	int fileDescriptor;
-
 public:
 
 	void create();
-	int read(char *&data);
-	void write(char data[], int length);
-	void close();
 	OutgoingSocket();
 	virtual ~OutgoingSocket();
 };
