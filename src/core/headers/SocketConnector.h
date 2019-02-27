@@ -12,7 +12,7 @@ class SocketConnector {
 
 public:
 
-	void connect(Socket *clientSocket, Socket *outgoingSocket);
+	static void connect(Socket *clientSocket, Socket *outgoingSocket);
 	SocketConnector();
 	virtual ~SocketConnector();
 };

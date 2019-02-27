@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <string.h>
+#include <thread>
 
 #define __FILENAME__ strrchr("/" __FILE__, '/') + 1
 #define LOCATION string(__FILENAME__) + ":" + string(__func__) + "():" + to_string(__LINE__)

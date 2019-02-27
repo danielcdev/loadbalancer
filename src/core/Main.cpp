@@ -25,15 +25,7 @@ void Main::begin() {
 		Socket *clientSocket = new ClientSocket(newSocket);
 		Socket *outgoingSocket = new OutgoingSocket();
 
-		try {
-			outgoingSocket->create();
-		} catch (exception &e) {
-			cerr << "Caught exception at " << LOCATION << "\n" << e.what()
-					<< endl;
-		}
-
-		SocketConnector *socketConnector = new SocketConnector();
-		socketConnector->connect(clientSocket, outgoingSocket);
+		thread(SocketConnector::connect, clientSocket, outgoingSocket).detach();
 	}
 }
 

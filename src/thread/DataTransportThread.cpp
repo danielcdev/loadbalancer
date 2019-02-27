@@ -13,7 +13,6 @@ void DataTransportThread::entryPoint(Socket *readSocket, Socket *writeSocket) {
 	}
 
 	readSocket->close();
-	writeSocket->close();
 }
 
 DataTransportThread::DataTransportThread() {
