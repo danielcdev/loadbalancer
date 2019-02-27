@@ -8,8 +8,6 @@ void DataTransportThread::entryPoint(Socket *readSocket, Socket *writeSocket) {
 		if (bytesRead <= 0)
 			break;
 
-		cout << "Writing " << data << endl;
-
 		writeSocket->write(data, bytesRead);
 		delete[] data;
 	}
